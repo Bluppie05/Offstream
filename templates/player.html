@@ -1,0 +1,43 @@
+<head>
+    <link href="/videojs/video-js.css" rel="stylesheet" />
+    <link href="/videojs/forest.css" rel="stylesheet" />
+  
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+    <script src="/vidjs/videojs-ie8.min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+  </head>
+  
+  <body>
+    <div style="height: 100%;overflow: hidden;">
+    <video
+      id="my-video"
+      class="video-js vjs-theme-forest"
+      controls
+      preload="auto"
+      width="100%"
+      height="100%"
+      poster="/thumbnails/{{video}}.jpg"
+      data-setup="{}"
+      style="height:100%;width:100%;"
+    >
+      <source src="/videos/{{video}}" type="video/mp4" />
+      <source src="/videos/{{video}}" type="video/webm" />
+      <source src="/videos/{{video}}" type="video/mkv" />
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a
+        web browser that
+        <a href="https://videojs.com/html5-video-support/" target="_blank"
+          >supports HTML5 video</a
+        >
+      </p>
+    </video>
+    </div>
+  
+    <script src="/videojs/video.js"></script>
+  </body>
