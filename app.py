@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, send_from_directory, jsonify, Response
 import subprocess
 import platform
+import os
+import urllib.parse
+import urllib.request
 
 if(platform.system() == "Linux"):
     system = "linux"
@@ -34,8 +37,19 @@ app = Flask(__name__.split('.')[0], static_url_path="")
 
 @app.route('/')
 def index():
-    f = request.args.get("f")
-    return(render_template("index.html", file=f))
+    files = os.scandir("videos")
+
+    html = ""
+    for f in files:
+        file_name = str(f.name).replace(".mp4", "")
+        link = "http://127.0.0.1:5000/thumbnail?v=" + str(f.name)
+        file_img = urllib.request.urlopen(link).read()
+        file_img = file_img.decode("utf-8")
+        html += '<li><div class="img"><a href="player?v=' + str(f.name) + '" title="' + str(file_name) + '"><img src="' + str(file_img) + '"><div class="type ic-SUB"></div></a></div><p class="name"><a href="/player?v=' + str(f.name) + '" title="' + str(file_name) + '">' + str(file_name) + '</a></p><p class="episode"></p></li>'
+    html = '<ul class="items">' + html + '</ul>'
+    html = urllib.parse.quote(html)
+
+    return(render_template("index.html", videolist=html))
 
 @app.route('/player')
 def player():
