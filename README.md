@@ -36,4 +36,25 @@ Offstream is local self-hosted video network to play your favorite movies, clips
 4. Run the server using the command `python3 -m flask run -h 0.0.0.0`
 5. The server will now be running, connect using the Offstream client or go to your browser at http://{serverip}:5000/
 
+## Windows(Not yet tested)
+1. Clone the repository locally using the command `git clone https://github.com/Bluppie05/Offstream.git`
+2. Install [python3](https://python.org/)
+3. Install virtualenv using the command `pip install virtualenv`
+4. Create a virtualenv using the command `virtualenv env`
+5. Activate your virtualenv using the command `env\Scripts\activate.bat`
+6. Install requirements using the command `pip install -r requirements.txt`
+7. Run the server using the command `python -m flask run -h 0.0.0.0`
+8. The server will now be running, connect using the Offstream client or go to your browser at http://{serverip}:5000/
+
+## Mac
+Coming soon, feel free to make a mac port, an official one will be coming soon.
+
+## Unix / BSD(not yet tested)
+1. Clone the repository locally using the command `git clone https://github.com/Bluppie05/Offstream.git`
+2. Install [python3](https://python.org/)
+3. Enter the preconfigured virtual environment using the command `source env/bin/activate`
+4. Run the server using the command `python3 -m flask run -h 0.0.0.0`
+5. The server will now be running, connect using the Offstream client or go to your browser at http://{serverip}:5000/
+
+
 
