@@ -42,11 +42,11 @@ def index():
     html = ""
     for f in files:
         file_name = str(f.name).replace(".mp4", "")
-        link = "http://127.0.0.1:5000/thumbnail?v=" + str(f.name)
+        link = "http://127.0.0.1:5000/thumbnail?v=" + urllib.parse.quote(str(f.name))
         file_img = urllib.request.urlopen(link).read()
         file_img = file_img.decode("utf-8")
-        html += '<li><div class="img"><a href="player?v=' + str(f.name) + '" title="' + str(file_name) + '"><img src="' + str(file_img) + '"><div class="type ic-SUB"></div></a></div><p class="name"><a href="/player?v=' + str(f.name) + '" title="' + str(file_name) + '">' + str(file_name) + '</a></p><p class="episode"></p></li>'
-    html = '<ul class="items">' + html + '</ul>'
+        html += '<a href="player?v=' + str(f.name) + '" title="' + str(file_name) + '"><div class="responsive"><div class="gallery"><img src="' + str(file_img) + '" width="600" height="400"><div class="desc">' + str(file_name) + '</div></div></div></a>'
+    #html = '<ul class="items">' + html + '</ul>'
     html = urllib.parse.quote(html)
 
     return(render_template("index.html", videolist=html))
@@ -84,3 +84,8 @@ def send_css(path):
 @app.route('/thumbnails/<path:path>')
 def send_thumbnails(path):
     return send_from_directory('thumbnails', path)
+
+# serve static path img
+@app.route('/img/<path:path>')
+def send_img(path):
+    return send_from_directory('img', path)
