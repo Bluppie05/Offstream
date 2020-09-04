@@ -62,7 +62,7 @@ Install the offstream client to connect quickly to a offstream media server.
 ## Android app
 Download the android app in the Google play store: (Comming soon, download the apk on the releases page)
 
-## Ios app(Iphone,Ipad)
+## Ios app(Iphone, Ipad)
 There is no official app yet, but you can install a (web-based) app by adding your media server link to your homescreen.
 
 1. Run the server and connect to the webpage by going to this adress in safari: http://{serverip}:5000/
