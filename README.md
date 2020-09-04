@@ -1,7 +1,7 @@
 # Offstream
 Local video streaming has never been so easy
 
-Offstream is local self-hosted video network to play your favorite movies, clips and videos. Build your own netflix using Offstream.
+Offstream is local self-hosted media server to play your favorite movies, clips and videos.
 
 # Comparison
 ## Offstream
@@ -29,7 +29,7 @@ Offstream is local self-hosted video network to play your favorite movies, clips
 - OK resource usage
 
 # Installation
-## Linux(reccommended)
+## Linux(recommended)
 1. Clone the repository locally using the command `git clone https://github.com/Bluppie05/Offstream.git`
 2. Install [python3](https://python.org/)
 3. Enter the preconfigured virtual environment using the command `source env/bin/activate`
