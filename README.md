@@ -69,5 +69,8 @@ There is no official app yet, but you can install a (web-based) app by adding yo
 2. Tap the share button.
 3. Tap add to homescreen, and click on add.
 
+## TV(Android tv, Amazon fire tv, NVIDIA Shield, Apple tv, Chromecast, Roku, LG smart tv, Samsung smart tv, PS4, Xbox One, Kodi)
+Coming soon.
+
 
 
