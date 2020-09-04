@@ -56,7 +56,7 @@ Coming soon, feel free to make a mac port, an official one will be coming soon.
 4. Run the server using the command `python3 -m flask run -h 0.0.0.0`
 5. The server will now be running, connect using the Offstream client or go to your browser at http://{serverip}:5000/
 
-# Client
+# Client Installation
 Install the offstream client to connect quickly to a offstream media server.
 
 ## Android app
