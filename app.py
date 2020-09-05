@@ -4,6 +4,8 @@ import platform
 import os
 import urllib.parse
 import urllib.request
+import platform
+import socket
 
 if(platform.system() == "Linux"):
     system = "linux"
@@ -51,6 +53,17 @@ def index():
 
     return(render_template("index.html", videolist=html))
 
+
+@app.route('/settings')
+def settings():
+    pipver = platform.python_version()
+    ver = 'v1'
+    ipv4 = socket.gethostbyname(socket.gethostname()) + ":5000"
+    libdir = "Offstream/videos"
+
+
+    return(render_template("settings.html", pipver=pipver, ver=ver, ipv4=ipv4, libdir=libdir))
+
 @app.route('/player')
 def player():
     v = request.args.get("v")
@@ -89,3 +102,7 @@ def send_thumbnails(path):
 @app.route('/img/<path:path>')
 def send_img(path):
     return send_from_directory('img', path)
+
+@app.route('/fonts/<path:path>')
+def send_fonts(path):
+    return send_from_directory('fonts', path)

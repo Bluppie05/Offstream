@@ -1,3 +1,4 @@
+@font-face { font-family: Roboto-Bold; src: url('/fonts/Roboto-Bold.ttf'); }
 body, html {
     height: 100%;
     margin: 0;
@@ -8,6 +9,13 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    scroll-behavior: smooth;
+}
+h1 {
+  font-family: Roboto-Bold;
+  font-weight: bold;
+  color: White;
+  text-align: center;
 }
 
 div.gallery {
@@ -18,6 +26,28 @@ div.gallery:hover {
   border: 0px solid #777;
 }
 
+.fa {
+  padding: 5px;
+  font-family: Roboto-Bold;
+  font-weight: bold;
+  color: White;
+
+}
+
+.box-1 {
+  margin: auto;
+
+  padding: 10px;
+  width: auto;
+  max-width: 50%;
+  background-color: white;
+  border-radius: 12px;
+  color: black;
+  overflow: hidden;
+  font-weight: 700;
+  font-size: 16px;
+}
+
 div.gallery img {
   width: 100%;
   height: auto;
@@ -26,8 +56,20 @@ div.gallery img {
 }
 
 div.desc {
-  padding: 15px;
+  padding: 10px;
   text-align: center;
+  overflow: hidden;
+}
+
+div.desc:hover {
+
+
+}
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 * {
@@ -37,15 +79,18 @@ div.desc {
 .responsive {
   padding: 0 6px;
   float: left;
-  width: 24.99999%;
+  width: 23%;
   background-color: rgba(30, 30, 30, 0.9);
   border-radius: 10px;
   margin: 5px;
   color: white;
+  transition: 250ms all;
 }
 
 .responsive:hover {
-    box-shadow: 2px 2px 5px rgb(10, 10, 10, 0.9);
+    z-index: 20;
+    transform: scale(1.2);
+    opacity: 1;
 }
 
 @media only screen and (max-width: 700px) {
