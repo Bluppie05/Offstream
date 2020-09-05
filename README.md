@@ -57,13 +57,13 @@ Coming soon, feel free to make a mac port, an official one will be coming soon.
 5. The server will now be running, connect using the Offstream client or go to your browser at http://{serverip}:5000/
 
 ## Ubuntu Image(Offstream pre-installed)
-Comming Soon.
+Coming Soon.
 
 # Client Installation
 Install the offstream client to connect quickly to a offstream media server.
 
 ## Android app
-Download the android app in the Google play store: (Comming soon, download the apk on the releases page)
+Download from google play(coming soon) or from the [releases](https://github.com/Bluppie05/Offstream/releases) page
 
 ## Ios app(Iphone, Ipad)
 There is no official app yet, but you can install a (web-based) app by adding your media server link to your homescreen.
