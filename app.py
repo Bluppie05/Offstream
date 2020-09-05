@@ -4,6 +4,18 @@ import platform
 import os
 import urllib.parse
 import urllib.request
+import platform
+import socket
+from tmdbv3api import TMDb
+from tmdbv3api import Movie
+
+tmdb = TMDb()
+tmdb.api_key = '1c591c4478085dd35bfc00eafb0940cd'
+tmdb.language = 'en'
+tmdb.debug = True
+
+movie = Movie()
+
 
 if(platform.system() == "Linux"):
     system = "linux"
@@ -40,16 +52,40 @@ def index():
     files = os.scandir("videos")
 
     html = ""
+    html2 = ""
     for f in files:
         file_name = str(f.name).replace(".mp4", "")
-        link = "http://127.0.0.1:5000/thumbnail?v=" + urllib.parse.quote(str(f.name))
-        file_img = urllib.request.urlopen(link).read()
-        file_img = file_img.decode("utf-8")
-        html += '<a href="player?v=' + str(f.name) + '" title="' + str(file_name) + '"><div class="responsive"><div class="gallery"><img src="' + str(file_img) + '" width="600" height="400"><div class="desc">' + str(file_name) + '</div></div></div></a>'
+        endimg = ""
+        try:
+            search = movie.search(file_name)
+            if not search:
+                dsfswq23=D8asD
+            postr = ""
+            for res in search:
+                postr = res.poster_path
+            poster_img = 'https://image.tmdb.org/t/p/w500' + postr
+            html2 += '<a href="player?v=' + str(f.name) + '" title="' + str(file_name) + '"><div class="responsive"><div class="gallery"><img src="' + str(poster_img) + '" width="600" height="400"><div class="desc">' + str(file_name) + '</div></div></div></a>'
+        except:
+            link = "http://127.0.0.1:5000/thumbnail?v=" + urllib.parse.quote(str(f.name))
+            file_img = urllib.request.urlopen(link).read()
+            file_img = file_img.decode("utf-8")
+            html += '<a href="player?v=' + str(f.name) + '" title="' + str(file_name) + '"><div class="responsive"><div class="gallery"><img src="' + str(file_img) + '" style="width:100%;height:180px;"><div class="desc">' + str(file_name) + '</div></div></div></a>'
     #html = '<ul class="items">' + html + '</ul>'
     html = urllib.parse.quote(html)
+    html2 = urllib.parse.quote(html2)
 
-    return(render_template("index.html", videolist=html))
+    return(render_template("index.html", videolist=html, movielist=html2))
+
+
+@app.route('/settings')
+def settings():
+    pipver = platform.python_version()
+    ver = 'v1'
+    ipv4 = socket.gethostbyname(socket.gethostname()) + ":5000"
+    libdir = "Offstream/videos"
+
+
+    return(render_template("settings.html", pipver=pipver, ver=ver, ipv4=ipv4, libdir=libdir))
 
 @app.route('/player')
 def player():
@@ -97,3 +133,7 @@ def send_thumbnails(path):
 @app.route('/img/<path:path>')
 def send_img(path):
     return send_from_directory('img', path)
+
+@app.route('/fonts/<path:path>')
+def send_fonts(path):
+    return send_from_directory('fonts', path)
