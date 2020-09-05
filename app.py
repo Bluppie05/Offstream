@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_from_directory, jsonify, Response
+from flask import Flask, render_template, request, send_from_directory, jsonify, Response, redirect
 import subprocess
 import platform
 import os
@@ -54,7 +54,22 @@ def index():
     html = ""
     html2 = ""
     for f in files:
-        file_name = str(f.name).replace(".mp4", "")
+        file_name = str(f.name).casefold()
+        file_name = str(file_name).replace(".mp4", "")
+        file_name = str(file_name).replace(".mkv", "")
+        file_name = str(file_name).replace(".webm", "")
+        file_name = str(file_name).replace(".", " ")
+        file_name = str(file_name).replace("-", " ")
+        file_name = str(file_name).replace("720p", "")
+        file_name = str(file_name).replace("1080p", "")
+        file_name = str(file_name).replace("480p", "")
+        file_name = str(file_name).replace("144p", "")
+        file_name = str(file_name).replace("720p", "")
+        file_name = str(file_name).replace("torrent", "")
+        file_name = str(file_name).replace("fullhd", "")
+        file_name = str(file_name).replace("full", "")
+        file_name = str(file_name).replace("hd", "")
+        file_name = str(file_name).replace("", "")
         endimg = ""
         try:
             search = movie.search(file_name)
@@ -90,6 +105,13 @@ def settings():
 @app.route('/player')
 def player():
     v = request.args.get("v")
+
+    if ".mkv" in v:
+        link = "http://127.0.0.1:5000/mkv?v=" + urllib.parse.quote(str(v))
+        mp4 = urllib.request.urlopen(link).read()
+        v = mp4.decode("utf-8")
+        return redirect("/player?v="+v)
+
     return(render_template("player.html", video=v))
 
 @app.route('/thumbnail')
@@ -97,6 +119,14 @@ def thumbnail():
     video_input_path = 'videos/' + request.args.get("v")
     img_output_path = 'thumbnails/' + request.args.get("v") + ".jpg"
     subprocess.call([ffmpeg, '-n', '-i', video_input_path, '-ss', '00:00:00.000', '-vframes', '1', img_output_path])
+    img_link = "/"+img_output_path
+    return(render_template("thumbnail.html", img=img_link))
+
+@app.route('/mkv')
+def mkv():
+    video_input_path = 'videos/' + request.args.get("v")
+    img_output_path = request.args.get("v").replace(".mkv", ".mp4")
+    subprocess.call([ffmpeg, '-n', '-i', video_input_path, img_output_path])
     img_link = "/"+img_output_path
     return(render_template("thumbnail.html", img=img_link))
 

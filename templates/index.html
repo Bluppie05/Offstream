@@ -11,14 +11,22 @@
         <a href="/settings"><i class="fa fa-gear" style="font-size:36px;"></i></a>
         <h1>OFFSTREAM</h1>
         <div class="container">
-        <h1>My Movies</h1>
-        <div id="movielist" style="height: 70%;width: 100%;"></div>
+        {% if movielist %}
+            <h1>My Movies</h1>
+            <div id="movielist" style="height: 70%;width: 100%;"></div>
+        {% endif %}
+        {% if videolist %}
         <h1>My Library</h1>
         <div id="list" style="height: 100%;width: 100%;"></div>
+        {% endif %}
         </div>
     </body>
     <script>
-        document.getElementById("movielist").innerHTML = decodeURIComponent("{{movielist}}")
-        document.getElementById("list").innerHTML = decodeURIComponent("{{videolist}}")
+        {% if movielist %}
+            document.getElementById("movielist").innerHTML = decodeURIComponent("{{movielist}}")
+        {% endif %}
+        {% if videolist %}
+            document.getElementById("list").innerHTML = decodeURIComponent("{{videolist}}")
+        {% endif %}
     </script>
 </html>
