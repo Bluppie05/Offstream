@@ -64,6 +64,14 @@ def thumbnail():
     img_link = "/"+img_output_path
     return(render_template("thumbnail.html", img=img_link))
 
+@app.route('/mkv')
+def mkv():
+    video_input_path = 'videos/' + request.args.get("v")
+    img_output_path = 'videos/' + request.args.get("v") + ".mp4"
+    subprocess.call([ffmpeg, '-n', '-i', video_input_path, img_output_path])
+    img_link = "/"+img_output_path
+    return(render_template("thumbnail.html", img=img_link))
+
 
 # serve static path vidjs
 @app.route('/videojs/<path:path>')
