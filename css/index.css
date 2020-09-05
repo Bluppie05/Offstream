@@ -2,14 +2,10 @@
 body, html {
     height: 100%;
     margin: 0;
+    padding: 0;
     background-color: rgb(14, 13, 13);
     color: white;
     font-family: 'Roboto', sans-serif;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    scroll-behavior: smooth;
 }
 h1 {
   font-family: Roboto-Bold;
@@ -56,9 +52,11 @@ div.gallery img {
 }
 
 div.desc {
+  height: 7%;
   padding: 10px;
   text-align: center;
   overflow: hidden;
+  padding-bottom: 2px;
 }
 
 div.desc:hover {
