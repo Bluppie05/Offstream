@@ -28,7 +28,7 @@ Offstream is local self-hosted media server to play your favorite movies, clips 
 - Closed source
 - OK resource usage
 
-# Media Server Installation
+# Media Server Installation (Windows tutorial: https://youtu.be/Z4xijDAd2M8)
 ## Linux(recommended)
 1. Clone the repository locally using the command `git clone https://github.com/Bluppie05/Offstream.git`
 2. Install [python3](https://python.org/)
@@ -37,7 +37,7 @@ Offstream is local self-hosted media server to play your favorite movies, clips 
 5. The server will now be running, connect using the Offstream client or go to your browser at http://{serverip}:5000/
 
 ## Windows
-All commands below have to be ran in powershell, cmd will NOT work
+All commands below have to be ran in powershell, cmd will NOT work. Tutorial: https://youtu.be/Z4xijDAd2M8
 1. Install [git-cli](https://git-scm.com/download/win)
 2. Clone the repository locally using the command `git clone https://github.com/Bluppie05/Offstream.git`
 3. Install [python3](https://python.org/)
