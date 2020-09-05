@@ -22,7 +22,7 @@ elif(platform.system() == "Windows"):
         architecture = "win32"
     else:
         architecture = "win64"
-    ffmpeg = "ffmpeg/"+system+"/"+architecture+"/ffmpeg.exe"
+    ffmpeg = "ffmpeg\\"+system+"\\"+architecture+"\\ffmpeg.exe"
 else:
     system = "linux"
     if(platform.architecture()[0] == "64bit" or platform.architecture()[0] == "32bit"):
