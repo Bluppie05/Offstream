@@ -109,8 +109,9 @@ def player():
     if ".mkv" in v:
         link = "http://127.0.0.1:5000/mkv?v=" + urllib.parse.quote(str(v))
         mp4 = urllib.request.urlopen(link).read()
+        os.remove("videos/"+v)
         v = mp4.decode("utf-8")
-        return redirect("/player?v="+v)
+        return redirect("/player?v="+v.replace("/videos/", ""))
 
     return(render_template("player.html", video=v))
 
@@ -125,7 +126,7 @@ def thumbnail():
 @app.route('/mkv')
 def mkv():
     video_input_path = 'videos/' + request.args.get("v")
-    img_output_path = request.args.get("v").replace(".mkv", ".mp4")
+    img_output_path = 'videos/'+request.args.get("v").replace(".mkv", ".mp4")
     subprocess.call([ffmpeg, '-n', '-i', video_input_path, img_output_path])
     img_link = "/"+img_output_path
     return(render_template("thumbnail.html", img=img_link))
