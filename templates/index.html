@@ -10,23 +10,25 @@
     <body>
         <a href="/settings"><i class="fa fa-gear" style="font-size:36px;"></i></a>
         <h1>OFFSTREAM</h1>
+        <div>
+          <center><button class="buttonactive" type="button" onclick="gotoMov()">Movies</button>
+          <button class="button" type="button" onclick="gotoLib()">Library</button><p id="demo"></p></center>
+        </div>
         <div class="container">
-        {% if movielist %}
-            <h1>My Movies</h1>
-            <div id="movielist" style="height: 70%;width: 100%;"></div>
-        {% endif %}
-        {% if videolist %}
-        <h1>My Library</h1>
-        <div id="list" style="height: 100%;width: 100%;"></div>
-        {% endif %}
+          <div class="container-12">
+            <ul>
+              <center><div id="movielist" class="movielist"></div></center>
+            </ul>
+
+		  </div>
         </div>
     </body>
     <script>
-        {% if movielist %}
-            document.getElementById("movielist").innerHTML = decodeURIComponent("{{movielist}}")
-        {% endif %}
-        {% if videolist %}
-            document.getElementById("list").innerHTML = decodeURIComponent("{{videolist}}")
-        {% endif %}
+        document.getElementById("movielist").innerHTML = decodeURIComponent("{{movielist}}")
+
+        function gotoLib() {
+          document.getElementById("movielist").innerHTML = "Loading..";
+          location.href='/lib';
+        }
     </script>
 </html>

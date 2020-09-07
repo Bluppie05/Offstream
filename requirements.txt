@@ -1,2 +1,4 @@
 flask
 tmdbv3api
+flask_BasicAuth
+readsettings
