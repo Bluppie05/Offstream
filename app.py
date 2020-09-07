@@ -64,19 +64,12 @@ basic_auth = BasicAuth(app)
 app.config['BASIC_AUTH_USERNAME'] = str(usrname)
 app.config['BASIC_AUTH_PASSWORD'] = str(passwd)
 
-@app.route('/')
-@basic_auth.required
-def index():
-    files = os.scandir("videos")
-
-    html = ""
-    html2 = ""
-    info = ""
-    for f in files:
-        file_name = str(f.name).casefold()
+def filter(fname):
+        file_name = str(fname).casefold()
         file_name = str(file_name).replace(".mp4", "")
         file_name = str(file_name).replace(".mkv", "")
         file_name = str(file_name).replace(".webm", "")
+        file_name = str(file_name).replace(".avi", "")
         file_name = str(file_name).replace(".", " ")
         file_name = str(file_name).replace("-", " ")
         file_name = str(file_name).replace("720p", "")
@@ -87,8 +80,44 @@ def index():
         file_name = str(file_name).replace("torrent", "")
         file_name = str(file_name).replace("fullhd", "")
         file_name = str(file_name).replace("full", "")
+        file_name = str(file_name).replace("hdts", "")
         file_name = str(file_name).replace("hd", "")
-        file_name = str(file_name).replace("", "")
+        file_name = str(file_name).replace("2019", "")
+        file_name = str(file_name).replace("2020", "")
+        file_name = str(file_name).replace("2018", "")
+        file_name = str(file_name).replace("2017", "")
+        file_name = str(file_name).replace("2016", "")
+        file_name = str(file_name).replace("2015", "")
+        file_name = str(file_name).replace("2014", "")
+        file_name = str(file_name).replace("2013", "")
+        file_name = str(file_name).replace("2012", "")
+        file_name = str(file_name).replace("2011", "")
+        file_name = str(file_name).replace("2010", "")
+        file_name = str(file_name).replace("2009", "")
+        file_name = str(file_name).replace("2008", "")
+        file_name = str(file_name).replace("2007", "")
+        file_name = str(file_name).replace("2006", "")
+        file_name = str(file_name).replace("2005", "")
+        file_name = str(file_name).replace("2004", "")
+        file_name = str(file_name).replace("2003", "")
+        file_name = str(file_name).replace("2002", "")
+        file_name = str(file_name).replace("2001", "")
+        file_name = str(file_name).replace("2000", "")
+        file_name = str(file_name).replace("xvid", "")
+        file_name = str(file_name).replace("etrg", "")
+
+        return file_name
+
+@app.route('/')
+@basic_auth.required
+def index():
+    files = os.scandir("videos")
+
+    html = ""
+    html2 = ""
+    info = ""
+    for f in files:
+        file_name = filter(f.name)
         endimg = ""
         try:
             search = movie.search(file_name)
@@ -119,22 +148,7 @@ def lib():
     html = ""
     html2 = ""
     for f in files:
-        file_name = str(f.name).casefold()
-        file_name = str(file_name).replace(".mp4", "")
-        file_name = str(file_name).replace(".mkv", "")
-        file_name = str(file_name).replace(".webm", "")
-        file_name = str(file_name).replace(".", " ")
-        file_name = str(file_name).replace("-", " ")
-        file_name = str(file_name).replace("720p", "")
-        file_name = str(file_name).replace("1080p", "")
-        file_name = str(file_name).replace("480p", "")
-        file_name = str(file_name).replace("144p", "")
-        file_name = str(file_name).replace("720p", "")
-        file_name = str(file_name).replace("torrent", "")
-        file_name = str(file_name).replace("fullhd", "")
-        file_name = str(file_name).replace("full", "")
-        file_name = str(file_name).replace("hd", "")
-        file_name = str(file_name).replace("", "")
+        file_name = filter(f.name)
         endimg = ""
         try:
             search = movie.search(file_name)
@@ -177,6 +191,12 @@ def player():
         os.remove("videos/"+v)
         v = mp4.decode("utf-8")
         return redirect("/player?v="+v.replace("/videos/", ""))
+    if ".avi" in v:
+        link = "http://127.0.0.1:5000/avi?v=" + urllib.parse.quote(str(v))
+        mp4 = urllib.request.urlopen(link).read()
+        os.remove("videos/"+v)
+        v = mp4.decode("utf-8")
+        return redirect("/player?v="+v.replace("/videos/", ""))
 
     return(render_template("player.html", video=v))
 
@@ -192,6 +212,14 @@ def thumbnail():
 def mkv():
     video_input_path = 'videos/' + request.args.get("v")
     img_output_path = 'videos/'+request.args.get("v").replace(".mkv", ".mp4")
+    subprocess.call([ffmpeg, '-n', '-i', video_input_path, img_output_path])
+    img_link = "/"+img_output_path
+    return(render_template("thumbnail.html", img=img_link))
+
+@app.route('/avi')
+def avi():
+    video_input_path = 'videos/' + request.args.get("v")
+    img_output_path = 'videos/'+request.args.get("v").replace(".avi", ".mp4")
     subprocess.call([ffmpeg, '-n', '-i', video_input_path, img_output_path])
     img_link = "/"+img_output_path
     return(render_template("thumbnail.html", img=img_link))

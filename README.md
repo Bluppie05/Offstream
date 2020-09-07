@@ -28,16 +28,16 @@ Offstream is local self-hosted media server to play your favorite movies, clips 
 - Closed source
 - OK resource usage
 
-# Media Server Installation (Default Credentials = Username: `admin` Password:`admin`)
+# Media Server Installation
+Default Credentials = Username: `admin` Password:`admin`
 
-First follow theese steps to get an api key (free): https://developers.themoviedb.org/3/getting-started/introduction
+First follow these steps to get an api key (free): https://developers.themoviedb.org/3/getting-started/introduction
 ## Linux(recommended)
 1. Clone the repository locally using the command `git clone https://github.com/Bluppie05/Offstream.git`
 2. Install [python3](https://python.org/)
 3. Enter the preconfigured virtual environment using the command `source env/bin/activate`
 4. Run the server using the command `python3 -m flask run -h 0.0.0.0`
-5. Set your api key by using the command, replace {yourapikey} with your actual api key `setenv apikey {yourapikey}`
-6. The server will now be running, connect using the Offstream client or go to your browser at http://{serverip}:5000/
+5. The server will now be running, connect using the Offstream client or go to your browser at http://{serverip}:5000/
 
 ## Windows
 All commands below have to be ran in powershell, cmd will NOT work. Tutorial: https://youtu.be/Z4xijDAd2M8
@@ -48,9 +48,8 @@ All commands below have to be ran in powershell, cmd will NOT work. Tutorial: ht
 5. Create a virtualenv using the command `virtualenv env`
 6. Activate your virtualenv using the command `env\Scripts\activate.bat`
 7. Install requirements using the command `pip install -r requirements.txt`
-8. Set your api key by using the command, replace {yourapikey} with your actual api key `set apikey={yourapikey}`
-9. Run the server using the command `python -m flask run -h 0.0.0.0`
-10. The server will now be running, connect using the Offstream client or go to your browser at http://{serverip}:5000/
+8. Run the server using the command `python -m flask run -h 0.0.0.0`
+9. The server will now be running, connect using the Offstream client or go to your browser at http://{serverip}:5000/
 
 ## Mac
 Coming soon, feel free to make a mac port, an official one will be coming soon.
