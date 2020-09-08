@@ -11,6 +11,7 @@ Offstream is local self-hosted media server to play your favorite movies, clips 
 - Free
 - Opensource
 - Low resource usage
+- It's dammn fast!
 
 ## Plex
 - Low or destorted video quality
